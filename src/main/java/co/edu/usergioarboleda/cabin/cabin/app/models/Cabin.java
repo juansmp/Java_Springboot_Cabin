@@ -23,10 +23,12 @@ import lombok.NoArgsConstructor;
 @Table(name = "cabin")
 public class Cabin implements Serializable {
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
     private Integer id;
     private String name;
+
     @ManyToOne
     @JoinColumn(name = "categoryId")
     @JsonIgnoreProperties("cabins")
