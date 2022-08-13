@@ -7,6 +7,7 @@ import co.edu.usergioarboleda.cabin.cabin.app.repository.CategoryRepository;
 import co.edu.usergioarboleda.cabin.cabin.app.models.Category;
 
 import java.util.List;
+import java.util.Optional;
 
 //ToDo: agregar métodos y completar validaciones.
 
@@ -19,7 +20,7 @@ public class CategoryService {
         return repository.findAll();
     }
 
-    public Category getById(Integer id) {
+    public Optional<Category> getById(Integer id) {
         return repository.findById(id);
     }
 
@@ -38,8 +39,15 @@ public class CategoryService {
 
     public Category update(Category category) {
         if (category.getId() != null) {
-            if (repository.findById(category.getId()) != null) {
-                return repository.save(category);
+            Optional<Category> optionalCategory = repository.findById(category.getId());
+            if (optionalCategory.isPresent()) {
+                if (category.getName() != null) {
+                    optionalCategory.get().setName(category.getName());
+                }
+                if (category.getDescription() != null) {
+                    optionalCategory.get().setDescription(category.getDescription());
+                }
+                return repository.save(optionalCategory.get());
             } else {
                 // throw new RuntimeException("Category not found");
                 return category;
