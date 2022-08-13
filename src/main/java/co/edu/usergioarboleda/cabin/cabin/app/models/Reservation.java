@@ -20,26 +20,34 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "cabin")
-public class Cabin implements Serializable {
-    private static final long serialVersionUID = 1L;
+@Table(name = "reservation")
+public class Reservation implements Serializable {
+    private static final long serialVersionUID = 5L;
 
     @Id
     @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
-    private Integer id;
-    private String name;
+    private Integer idReservation;
+    private String startDate;
+    private String devolutionDate;
 
     @ManyToOne
-    @JoinColumn(name = "categoryId")
-    @JsonIgnoreProperties("cabins")
-    private Category category;
-    private Integer rooms;
-    private String brand;
+    @JoinColumn(name = "clientId")
+    @JsonIgnoreProperties("reservations")
+    private Client client;
+
+    @ManyToOne
+    @JoinColumn(name = "cabinId")
+    @JsonIgnoreProperties("reservations")
+    private Cabin cabin;
+
     /*
-     * @OneToMany(cascade = { CascadeType.PERSIST }, mappedBy = "client")
+     * @ManyToOne
      * 
-     * @JsonIgnoreProperties("client")
-     * private List<Message> messages;
+     * @JoinColumn(name = "categoryId")
      * 
+     * @JsonIgnoreProperties("cabins")
+     * private Category category;
+     * private Integer rooms;
+     * private String brand;
      */
 }

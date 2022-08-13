@@ -29,12 +29,12 @@ public class CategoryRepository {
      * }
      */
 
-    public Category save(Category Category) {
-        return repository.save(Category);
+    public Category save(Category category) {
+        return repository.save(category);
     }
 
-    public void delete(Category Category) {
-        repository.delete(Category);
+    public void delete(Category category) {
+        repository.delete(category);
     }
 
 }
