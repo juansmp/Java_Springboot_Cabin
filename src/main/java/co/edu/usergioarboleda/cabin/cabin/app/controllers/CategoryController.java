@@ -36,13 +36,19 @@ public class CategoryController {
 
     @GetMapping("/{id}")
     public Category getById(@RequestBody Integer id) {
-        return service.getById(id);
+        return service.getById(id).orElse(null);
     }
 
     @PutMapping("/update")
     @ResponseStatus(code = HttpStatus.CREATED)
     public Category update(@RequestBody Category category) {
         return service.update(category);
+    }
+
+    @PutMapping("/delete")
+    @ResponseStatus(code = HttpStatus.OK)
+    public void delete(@RequestBody Category category) {
+        service.delete(category);
     }
 
 }

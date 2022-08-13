@@ -58,6 +58,10 @@ public class CategoryService {
         }
     }
 
+    public void delete(Category category) {
+        repository.delete(category);
+    }
+
     /*
      * 
      * public void delete(Integer id) {

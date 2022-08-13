@@ -36,13 +36,19 @@ public class CabinController {
 
     @GetMapping("/{id}")
     public Cabin getById(@RequestBody Integer id) {
-        return service.getById(id);
+        return service.getById(id).orElse(null);
     }
 
     @PutMapping("/update")
     @ResponseStatus(code = HttpStatus.CREATED)
     public Cabin update(@RequestBody Cabin cabin) {
         return service.update(cabin);
+    }
+
+    @PutMapping("/delete")
+    @ResponseStatus(code = HttpStatus.OK)
+    public void delete(@RequestBody Cabin cabin) {
+        service.delete(cabin);
     }
 
 }

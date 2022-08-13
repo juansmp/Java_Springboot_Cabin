@@ -65,6 +65,10 @@ public class CabinService {
         }
     }
 
+    public void delete(Cabin cabin) {
+        repository.delete(cabin);
+    }
+
     /*
      * 
      * public void delete(Integer id) {
