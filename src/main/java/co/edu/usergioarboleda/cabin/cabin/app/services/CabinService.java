@@ -7,6 +7,7 @@ import co.edu.usergioarboleda.cabin.cabin.app.repository.CabinRepository;
 import co.edu.usergioarboleda.cabin.cabin.app.models.Cabin;
 
 import java.util.List;
+import java.util.Optional;
 
 //TODO completar validaciones.
 //TODO completar updates con validaciones respectivas usando optional y verificar si algunos campos vienen o no vienen. .
@@ -20,7 +21,7 @@ public class CabinService {
         return repository.findAll();
     }
 
-    public Cabin getById(Integer id) {
+    public Optional<Cabin> getById(Integer id) {
         return repository.findById(id);
     }
 
@@ -39,8 +40,21 @@ public class CabinService {
 
     public Cabin update(Cabin cabin) {
         if (cabin.getId() != null) {
-            if (repository.findById(cabin.getId()) != null) {
-                return repository.save(cabin);
+            Optional<Cabin> optionalCabin = repository.findById(cabin.getId());
+            if (optionalCabin.isPresent()) {
+                if (cabin.getName() != null) {
+                    optionalCabin.get().setName(cabin.getName());
+                }
+                if (cabin.getCategory() != null) {
+                    optionalCabin.get().setCategory(cabin.getCategory());
+                }
+                if (cabin.getRooms() != null) {
+                    optionalCabin.get().setRooms(cabin.getRooms());
+                }
+                if (cabin.getBrand() != null) {
+                    optionalCabin.get().setBrand(cabin.getBrand());
+                }
+                return repository.save(optionalCabin.get());
             } else {
                 // throw new RuntimeException("Cabin not found");
                 return cabin;
