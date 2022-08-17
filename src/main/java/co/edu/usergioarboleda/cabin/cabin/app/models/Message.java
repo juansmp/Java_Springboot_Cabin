@@ -30,13 +30,13 @@ public class Message implements Serializable {
     private String messageText;
 
     @ManyToOne
-    @JoinColumn(name = "clientId")
-    @JsonIgnoreProperties("messages")
-    private Client client;
-
-    @ManyToOne
     @JoinColumn(name = "cabinId")
     @JsonIgnoreProperties("messages")
     private Cabin cabin;
+
+    @ManyToOne
+    @JoinColumn(name = "clientId")
+    @JsonIgnoreProperties({ "messages", "reservations" })
+    private Client client;
 
 }

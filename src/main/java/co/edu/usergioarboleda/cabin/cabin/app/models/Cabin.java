@@ -31,13 +31,14 @@ public class Cabin implements Serializable {
     @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
     private Integer id;
     private String name;
+    private String brand;
+    private Integer rooms;
+    private String description;
 
     @ManyToOne
     @JoinColumn(name = "categoryId")
     @JsonIgnoreProperties("cabins")
     private Category category;
-    private Integer rooms;
-    private String brand;
 
     @OneToMany(cascade = { CascadeType.PERSIST }, mappedBy = "client")
     @JsonIgnoreProperties("client")

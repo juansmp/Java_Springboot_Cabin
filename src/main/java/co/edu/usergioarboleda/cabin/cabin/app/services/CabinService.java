@@ -45,6 +45,9 @@ public class CabinService {
                 if (cabin.getName() != null) {
                     optionalCabin.get().setName(cabin.getName());
                 }
+                if (cabin.getDescription() != null) {
+                    optionalCabin.get().setDescription(cabin.getDescription());
+                }
                 if (cabin.getCategory() != null) {
                     optionalCabin.get().setCategory(cabin.getCategory());
                 }
