@@ -1,6 +1,7 @@
 package co.edu.usergioarboleda.cabin.cabin.app.models;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,8 +28,8 @@ public class Reservation implements Serializable {
     @Id
     @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
     private Integer idReservation;
-    private String startDate;
-    private String devolutionDate;
+    private Date startDate;
+    private Date devolutionDate;
     private String status = "created";
 
     @ManyToOne
