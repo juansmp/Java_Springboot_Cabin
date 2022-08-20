@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,7 +37,7 @@ public class ReservationController {
     }
 
     @GetMapping("/{id}")
-    public Reservation getById(@RequestBody Integer id) {
+    public Reservation getById(@PathVariable Integer id) {
         return service.getById(id).orElse(null);
     }
 
@@ -48,7 +50,7 @@ public class ReservationController {
      * }
      */
 
-    @PutMapping("/delete")
+    @DeleteMapping("/delete")
     @ResponseStatus(code = HttpStatus.OK)
     public void delete(@RequestBody Reservation reservation) {
         service.delete(reservation);

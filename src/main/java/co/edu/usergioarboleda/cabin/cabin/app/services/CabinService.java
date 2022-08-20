@@ -9,9 +9,6 @@ import co.edu.usergioarboleda.cabin.cabin.app.models.Cabin;
 import java.util.List;
 import java.util.Optional;
 
-//TODO completar validaciones.
-//TODO completar updates con validaciones respectivas usando optional y verificar si algunos campos vienen o no vienen. .
-
 @Service
 public class CabinService {
     @Autowired
@@ -69,7 +66,17 @@ public class CabinService {
     }
 
     public void delete(Cabin cabin) {
-        repository.delete(cabin);
+        if (cabin.getId() != null) {
+            Optional<Cabin> optionalCabin = repository.findById(cabin.getId());
+            if (optionalCabin.isPresent()) {
+                repository.delete(cabin);
+            } else {
+                // throw new RuntimeException("Cabin not found");
+            }
+        } else {
+            // throw new RuntimeException("Cabin not found");
+        }
+
     }
 
     /*

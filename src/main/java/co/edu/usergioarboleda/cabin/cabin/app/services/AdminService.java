@@ -9,8 +9,6 @@ import co.edu.usergioarboleda.cabin.cabin.app.models.Admin;
 import java.util.List;
 import java.util.Optional;
 
-//ToDo: agregar métodos y completar validaciones.
-
 @Service
 public class AdminService {
     @Autowired
@@ -60,7 +58,17 @@ public class AdminService {
      * }
      */
     public void delete(Admin admin) {
-        repository.delete(admin);
+        if (admin.getIdAdmin() != null) {
+            Optional<Admin> optionalAdmin = repository.findById(admin.getIdAdmin());
+            if (optionalAdmin.isPresent()) {
+                repository.delete(admin);
+            } else {
+                // throw new RuntimeException("Admin not found");
+            }
+        } else {
+            // throw new RuntimeException("Admin not found");
+        }
+
     }
 
     /*

@@ -9,8 +9,6 @@ import co.edu.usergioarboleda.cabin.cabin.app.models.Score;
 import java.util.List;
 import java.util.Optional;
 
-//ToDo: agregar métodos y completar validaciones.
-
 @Service
 public class ScoreService {
     @Autowired
@@ -36,6 +34,7 @@ public class ScoreService {
             }
         }
     }
+
     /*
      * public Score update(Score score) {
      * if (score.getId() != null) {
@@ -58,9 +57,18 @@ public class ScoreService {
      * }
      * }
      */
-
     public void delete(Score score) {
-        repository.delete(score);
+        if (score.getId() != null) {
+            Optional<Score> optionalScore = repository.findById(score.getId());
+            if (optionalScore.isPresent()) {
+                repository.delete(score);
+            } else {
+                // throw new RuntimeException("Score not found");
+            }
+        } else {
+            // throw new RuntimeException("Score not found");
+        }
+
     }
 
     /*

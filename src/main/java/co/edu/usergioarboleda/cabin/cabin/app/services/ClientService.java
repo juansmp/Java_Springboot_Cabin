@@ -9,8 +9,6 @@ import co.edu.usergioarboleda.cabin.cabin.app.models.Client;
 import java.util.List;
 import java.util.Optional;
 
-//ToDo: agregar métodos y completar validaciones.
-
 @Service
 public class ClientService {
     @Autowired
@@ -60,7 +58,17 @@ public class ClientService {
      */
 
     public void delete(Client client) {
-        repository.delete(client);
+        if (client.getIdClient() != null) {
+            Optional<Client> optionalClient = repository.findById(client.getIdClient());
+            if (optionalClient.isPresent()) {
+                repository.delete(client);
+            } else {
+                // throw new RuntimeException("Client not found");
+            }
+        } else {
+            // throw new RuntimeException("Client not found");
+        }
+
     }
 
     /*

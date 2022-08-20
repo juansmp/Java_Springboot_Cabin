@@ -9,8 +9,6 @@ import co.edu.usergioarboleda.cabin.cabin.app.models.Category;
 import java.util.List;
 import java.util.Optional;
 
-//ToDo: agregar métodos y completar validaciones.
-
 @Service
 public class CategoryService {
     @Autowired
@@ -59,9 +57,18 @@ public class CategoryService {
     }
 
     public void delete(Category category) {
-        repository.delete(category);
-    }
+        if (category.getId() != null) {
+            Optional<Category> optionalCategory = repository.findById(category.getId());
+            if (optionalCategory.isPresent()) {
+                repository.delete(category);
+            } else {
+                // throw new RuntimeException("Category not found");
+            }
+        } else {
+            // throw new RuntimeException("Category not found");
+        }
 
+    }
     /*
      * 
      * public void delete(Integer id) {

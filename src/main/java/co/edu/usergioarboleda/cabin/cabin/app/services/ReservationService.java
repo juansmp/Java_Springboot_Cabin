@@ -9,8 +9,6 @@ import co.edu.usergioarboleda.cabin.cabin.app.models.Reservation;
 import java.util.List;
 import java.util.Optional;
 
-//ToDo: agregar métodos y completar validaciones.
-
 @Service
 public class ReservationService {
     @Autowired
@@ -61,7 +59,17 @@ public class ReservationService {
      * }
      */
     public void delete(Reservation reservation) {
-        repository.delete(reservation);
+        if (reservation.getIdReservation() != null) {
+            Optional<Reservation> optionalReservation = repository.findById(reservation.getIdReservation());
+            if (optionalReservation.isPresent()) {
+                repository.delete(reservation);
+            } else {
+                // throw new RuntimeException("Reservation not found");
+            }
+        } else {
+            // throw new RuntimeException("Reservation not found");
+        }
+
     }
 
     /*

@@ -9,8 +9,6 @@ import co.edu.usergioarboleda.cabin.cabin.app.models.Message;
 import java.util.List;
 import java.util.Optional;
 
-//ToDo: agregar métodos y completar validaciones.
-
 @Service
 public class MessageService {
     @Autowired
@@ -61,7 +59,17 @@ public class MessageService {
      * }
      */
     public void delete(Message message) {
-        repository.delete(message);
+        if (message.getIdMessage() != null) {
+            Optional<Message> optionalMessage = repository.findById(message.getIdMessage());
+            if (optionalMessage.isPresent()) {
+                repository.delete(message);
+            } else {
+                // throw new RuntimeException("Message not found");
+            }
+        } else {
+            // throw new RuntimeException("Message not found");
+        }
+
     }
 
     /*
