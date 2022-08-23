@@ -30,7 +30,7 @@ public class CabinController {
     public ResponseEntity<List<Cabin>> getAll() {
         List<Cabin> listCabins = service.getAll();
         if (listCabins.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(listCabins);
+            return ResponseEntity.status(HttpStatus.OK).body(listCabins);
         } else {
             return ResponseEntity.status(HttpStatus.OK).body(listCabins);
         }

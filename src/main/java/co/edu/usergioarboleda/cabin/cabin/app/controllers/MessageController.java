@@ -30,7 +30,7 @@ public class MessageController {
     public ResponseEntity<List<Message>> getAll() {
         List<Message> listMessages = service.getAll();
         if (listMessages.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(listMessages);
+            return ResponseEntity.status(HttpStatus.OK).body(listMessages);
         } else {
             return ResponseEntity.status(HttpStatus.OK).body(listMessages);
         }

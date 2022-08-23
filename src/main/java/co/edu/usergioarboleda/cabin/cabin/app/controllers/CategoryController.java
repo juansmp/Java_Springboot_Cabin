@@ -30,7 +30,7 @@ public class CategoryController {
     public ResponseEntity<List<Category>> getAll() {
         List<Category> listCategories = service.getAll();
         if (listCategories.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(listCategories);
+            return ResponseEntity.status(HttpStatus.OK).body(listCategories);
         } else {
             return ResponseEntity.status(HttpStatus.OK).body(listCategories);
         }

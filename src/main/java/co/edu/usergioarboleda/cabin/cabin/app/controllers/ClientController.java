@@ -30,7 +30,7 @@ public class ClientController {
     public ResponseEntity<List<Client>> getAll() {
         List<Client> listClients = service.getAll();
         if (listClients.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(listClients);
+            return ResponseEntity.status(HttpStatus.OK).body(listClients);
         } else {
             return ResponseEntity.status(HttpStatus.OK).body(listClients);
         }

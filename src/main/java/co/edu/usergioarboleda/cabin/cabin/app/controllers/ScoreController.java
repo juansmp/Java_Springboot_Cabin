@@ -30,7 +30,7 @@ public class ScoreController {
     public ResponseEntity<List<Score>> getAll() {
         List<Score> listScores = service.getAll();
         if (listScores.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(listScores);
+            return ResponseEntity.status(HttpStatus.OK).body(listScores);
         } else {
             return ResponseEntity.status(HttpStatus.OK).body(listScores);
         }

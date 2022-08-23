@@ -30,7 +30,7 @@ public class AdminController {
     public ResponseEntity<List<Admin>> getAll() {
         List<Admin> listAdmins = service.getAll();
         if (listAdmins.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(listAdmins);
+            return ResponseEntity.status(HttpStatus.OK).body(listAdmins);
         } else {
             return ResponseEntity.status(HttpStatus.OK).body(listAdmins);
         }

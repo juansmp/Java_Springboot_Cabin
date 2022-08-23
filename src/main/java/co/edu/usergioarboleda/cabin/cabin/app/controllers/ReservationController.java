@@ -30,7 +30,7 @@ public class ReservationController {
     public ResponseEntity<List<Reservation>> getAll() {
         List<Reservation> listReservations = service.getAll();
         if (listReservations.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(listReservations);
+            return ResponseEntity.status(HttpStatus.OK).body(listReservations);
         } else {
             return ResponseEntity.status(HttpStatus.OK).body(listReservations);
         }
