@@ -47,10 +47,16 @@ public class CategoryController {
         return service.update(category);
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/all")
     @ResponseStatus(code = HttpStatus.OK)
-    public void delete(@RequestBody Category category) {
-        service.delete(category);
+    public void deleteAll(@RequestBody Category category) {
+        service.deleteAll(category);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(code = HttpStatus.OK)
+    public void deleteById(@PathVariable Integer id) {
+        service.deleteById(id);
     }
 
 }

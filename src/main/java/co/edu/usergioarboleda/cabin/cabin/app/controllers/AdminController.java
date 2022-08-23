@@ -47,10 +47,16 @@ public class AdminController {
         return service.update(admin);
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/all")
     @ResponseStatus(code = HttpStatus.OK)
-    public void delete(@RequestBody Admin admin) {
-        service.delete(admin);
+    public void deleteAll(@RequestBody Admin admin) {
+        service.deleteAll(admin);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(code = HttpStatus.OK)
+    public void deleteById(@PathVariable Integer id) {
+        service.deleteById(id);
     }
 
 }

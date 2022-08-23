@@ -65,7 +65,7 @@ public class CabinService {
         }
     }
 
-    public void delete(Cabin cabin) {
+    public void deleteAll(Cabin cabin) {
         if (cabin.getId() != null) {
             Optional<Cabin> optionalCabin = repository.findById(cabin.getId());
             if (optionalCabin.isPresent()) {
@@ -77,6 +77,15 @@ public class CabinService {
             // throw new RuntimeException("Cabin not found");
         }
 
+    }
+
+    public void deleteById(Integer id) {
+        Optional<Cabin> optionalCabin = repository.findById(id);
+        if (optionalCabin.isPresent()) {
+            repository.delete(optionalCabin.get());
+        } else {
+            // throw new RuntimeException("Cabin not found");
+        }
     }
 
 }

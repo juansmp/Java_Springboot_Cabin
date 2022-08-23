@@ -47,10 +47,16 @@ public class CabinController {
         return service.update(cabin);
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/all")
     @ResponseStatus(code = HttpStatus.OK)
-    public void delete(@RequestBody Cabin cabin) {
-        service.delete(cabin);
+    public void deleteAll(@RequestBody Cabin cabin) {
+        service.deleteAll(cabin);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(code = HttpStatus.OK)
+    public void deleteById(@PathVariable Integer id) {
+        service.deleteById(id);
     }
 
 }

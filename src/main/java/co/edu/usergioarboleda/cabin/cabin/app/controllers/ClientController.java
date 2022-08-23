@@ -47,10 +47,16 @@ public class ClientController {
         return service.update(client);
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/all")
     @ResponseStatus(code = HttpStatus.OK)
-    public void delete(@RequestBody Client client) {
-        service.delete(client);
+    public void deleteAll(@RequestBody Client client) {
+        service.deleteAll(client);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(code = HttpStatus.OK)
+    public void deleteById(@PathVariable Integer id) {
+        service.deleteById(id);
     }
 
 }

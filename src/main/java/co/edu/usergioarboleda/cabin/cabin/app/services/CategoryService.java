@@ -56,7 +56,7 @@ public class CategoryService {
         }
     }
 
-    public void delete(Category category) {
+    public void deleteAll(Category category) {
         if (category.getId() != null) {
             Optional<Category> optionalCategory = repository.findById(category.getId());
             if (optionalCategory.isPresent()) {
@@ -68,6 +68,15 @@ public class CategoryService {
             // throw new RuntimeException("Category not found");
         }
 
+    }
+
+    public void deleteById(Integer id) {
+        Optional<Category> optionalCategory = repository.findById(id);
+        if (optionalCategory.isPresent()) {
+            repository.delete(optionalCategory.get());
+        } else {
+            // throw new RuntimeException("Category not found");
+        }
     }
 
 }

@@ -47,10 +47,16 @@ public class ScoreController {
         return service.update(score);
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/all")
     @ResponseStatus(code = HttpStatus.OK)
-    public void delete(@RequestBody Score score) {
-        service.delete(score);
+    public void deleteAll(@RequestBody Score score) {
+        service.deleteAll(score);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(code = HttpStatus.OK)
+    public void deleteById(@PathVariable Integer id) {
+        service.deleteById(id);
     }
 
 }

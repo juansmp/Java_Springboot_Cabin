@@ -62,7 +62,7 @@ public class ClientService {
         }
     }
 
-    public void delete(Client client) {
+    public void deleteAll(Client client) {
         if (client.getIdClient() != null) {
             Optional<Client> optionalClient = repository.findById(client.getIdClient());
             if (optionalClient.isPresent()) {
@@ -74,6 +74,15 @@ public class ClientService {
             // throw new RuntimeException("Client not found");
         }
 
+    }
+
+    public void deleteById(Integer id) {
+        Optional<Client> optionalClient = repository.findById(id);
+        if (optionalClient.isPresent()) {
+            repository.delete(optionalClient.get());
+        } else {
+            // throw new RuntimeException("Client not found");
+        }
     }
 
 }

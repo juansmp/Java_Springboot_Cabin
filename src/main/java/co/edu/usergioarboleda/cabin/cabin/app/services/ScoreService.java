@@ -56,7 +56,7 @@ public class ScoreService {
         }
     }
 
-    public void delete(Score score) {
+    public void deleteAll(Score score) {
         if (score.getId() != null) {
             Optional<Score> optionalScore = repository.findById(score.getId());
             if (optionalScore.isPresent()) {
@@ -68,6 +68,15 @@ public class ScoreService {
             // throw new RuntimeException("Score not found");
         }
 
+    }
+
+    public void deleteById(Integer id) {
+        Optional<Score> optionalScore = repository.findById(id);
+        if (optionalScore.isPresent()) {
+            repository.delete(optionalScore.get());
+        } else {
+            // throw new RuntimeException("Score not found");
+        }
     }
 
 }

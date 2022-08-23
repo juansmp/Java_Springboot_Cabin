@@ -47,10 +47,16 @@ public class MessageController {
         return service.update(message);
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/all")
     @ResponseStatus(code = HttpStatus.OK)
-    public void delete(@RequestBody Message message) {
-        service.delete(message);
+    public void deleteAll(@RequestBody Message message) {
+        service.deleteAll(message);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(code = HttpStatus.OK)
+    public void deleteById(@PathVariable Integer id) {
+        service.deleteById(id);
     }
 
 }

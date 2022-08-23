@@ -56,7 +56,7 @@ public class ReservationService {
         }
     }
 
-    public void delete(Reservation reservation) {
+    public void deleteAll(Reservation reservation) {
         if (reservation.getIdReservation() != null) {
             Optional<Reservation> optionalReservation = repository.findById(reservation.getIdReservation());
             if (optionalReservation.isPresent()) {
@@ -68,6 +68,15 @@ public class ReservationService {
             // throw new RuntimeException("Reservation not found");
         }
 
+    }
+
+    public void deleteById(Integer id) {
+        Optional<Reservation> optionalReservation = repository.findById(id);
+        if (optionalReservation.isPresent()) {
+            repository.delete(optionalReservation.get());
+        } else {
+            // throw new RuntimeException("Reservation not found");
+        }
     }
 
 }

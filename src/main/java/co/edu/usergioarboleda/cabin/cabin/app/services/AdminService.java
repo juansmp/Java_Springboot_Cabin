@@ -59,7 +59,7 @@ public class AdminService {
         }
     }
 
-    public void delete(Admin admin) {
+    public void deleteAll(Admin admin) {
         if (admin.getIdAdmin() != null) {
             Optional<Admin> optionalAdmin = repository.findById(admin.getIdAdmin());
             if (optionalAdmin.isPresent()) {
@@ -71,6 +71,15 @@ public class AdminService {
             // throw new RuntimeException("Admin not found");
         }
 
+    }
+
+    public void deleteById(Integer id) {
+        Optional<Admin> optionalAdmin = repository.findById(id);
+        if (optionalAdmin.isPresent()) {
+            repository.delete(optionalAdmin.get());
+        } else {
+            // throw new RuntimeException("Admin not found");
+        }
     }
 
 }

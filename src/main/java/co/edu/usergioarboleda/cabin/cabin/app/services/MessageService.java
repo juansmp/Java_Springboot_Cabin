@@ -56,7 +56,7 @@ public class MessageService {
         }
     }
 
-    public void delete(Message message) {
+    public void deleteAll(Message message) {
         if (message.getIdMessage() != null) {
             Optional<Message> optionalMessage = repository.findById(message.getIdMessage());
             if (optionalMessage.isPresent()) {
@@ -68,6 +68,15 @@ public class MessageService {
             // throw new RuntimeException("Message not found");
         }
 
+    }
+
+    public void deleteById(Integer id) {
+        Optional<Message> optionalMessage = repository.findById(id);
+        if (optionalMessage.isPresent()) {
+            repository.delete(optionalMessage.get());
+        } else {
+            // throw new RuntimeException("Message not found");
+        }
     }
 
 }
