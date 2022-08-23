@@ -60,7 +60,7 @@ public class AdminController {
     }
 
     @DeleteMapping("/{id}")
-    @ResponseStatus(code = HttpStatus.OK)
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void deleteById(@PathVariable Integer id) {
         service.deleteById(id);
     }
