@@ -35,29 +35,27 @@ public class ReservationService {
         }
     }
 
-    /*
-     * public Reservation update(Reservation reservation) {
-     * if (reservation.getIdReservation() != null) {
-     * Optional<Reservation> optionalReservation =
-     * repository.findById(reservation.getIdReservation());
-     * if (optionalReservation.isPresent()) {
-     * if (reservation.getName() != null) {
-     * optionalReservation.get().setName(reservation.getName());
-     * }
-     * if (reservation.getDescription() != null) {
-     * optionalReservation.get().setDescription(reservation.getDescription());
-     * }
-     * return repository.save(optionalReservation.get());
-     * } else {
-     * // throw new RuntimeException("Reservation not found");
-     * return reservation;
-     * }
-     * } else {
-     * // throw new RuntimeException("Reservation not found");
-     * return reservation;
-     * }
-     * }
-     */
+    public Reservation update(Reservation reservation) {
+        if (reservation.getIdReservation() != null) {
+            Optional<Reservation> optionalReservation = repository.findById(reservation.getIdReservation());
+            if (optionalReservation.isPresent()) {
+                if (reservation.getStartDate() != null) {
+                    optionalReservation.get().setStartDate(reservation.getStartDate());
+                }
+                if (reservation.getDevolutionDate() != null) {
+                    optionalReservation.get().setDevolutionDate(reservation.getDevolutionDate());
+                }
+                return repository.save(optionalReservation.get());
+            } else {
+                // throw new RuntimeException("Reservation not found");
+                return reservation;
+            }
+        } else {
+            // throw new RuntimeException("Reservation not found");
+            return reservation;
+        }
+    }
+
     public void delete(Reservation reservation) {
         if (reservation.getIdReservation() != null) {
             Optional<Reservation> optionalReservation = repository.findById(reservation.getIdReservation());
@@ -71,25 +69,5 @@ public class ReservationService {
         }
 
     }
-
-    /*
-     * 
-     * public void delete(Integer id) {
-     * repository.deleteById(id);
-     * }
-     * 
-     * public List<Reservation> getByName(String name) {
-     * return repository.findByName(name);
-     * }
-     * 
-     * public List<Reservation> getByReservation(String reservation) {
-     * return repository.findByReservation(reservation);
-     * }
-     * 
-     * public List<Reservation> getByPrice(Double price) {
-     * return repository.findByPrice(price);
-     * }
-     * 
-     */
 
 }

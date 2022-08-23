@@ -41,14 +41,11 @@ public class ReservationController {
         return service.getById(id).orElse(null);
     }
 
-    /*
-     * @PutMapping("/update")
-     * 
-     * @ResponseStatus(code = HttpStatus.CREATED)
-     * public Reservation update(@RequestBody Reservation reservation) {
-     * return service.update(reservation);
-     * }
-     */
+    @PutMapping("/update")
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public Reservation update(@RequestBody Reservation reservation) {
+        return service.update(reservation);
+    }
 
     @DeleteMapping("/delete")
     @ResponseStatus(code = HttpStatus.OK)

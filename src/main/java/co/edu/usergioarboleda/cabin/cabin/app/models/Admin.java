@@ -23,15 +23,7 @@ public class Admin implements Serializable {
     @Id
     @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
     private Integer idAdmin;
-
-    /*
-     * @ManyToOne
-     * 
-     * @JoinColumn(name = "categoryId")
-     * 
-     * @JsonIgnoreProperties("cabins")
-     * private Category category;
-     * private Integer rooms;
-     * private String brand;
-     */
+    private String email;
+    private String password;
+    private String name;
 }

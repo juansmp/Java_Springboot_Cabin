@@ -79,24 +79,4 @@ public class CabinService {
 
     }
 
-    /*
-     * 
-     * public void delete(Integer id) {
-     * repository.deleteById(id);
-     * }
-     * 
-     * public List<Cabin> getByName(String name) {
-     * return repository.findByName(name);
-     * }
-     * 
-     * public List<Cabin> getByCategory(String category) {
-     * return repository.findByCategory(category);
-     * }
-     * 
-     * public List<Cabin> getByPrice(Double price) {
-     * return repository.findByPrice(price);
-     * }
-     * 
-     */
-
 }

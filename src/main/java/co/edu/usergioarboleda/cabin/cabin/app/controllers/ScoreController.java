@@ -41,14 +41,11 @@ public class ScoreController {
         return service.getById(id).orElse(null);
     }
 
-    /*
-     * @PutMapping("/update")
-     * 
-     * @ResponseStatus(code = HttpStatus.CREATED)
-     * public Score update(@RequestBody Score score) {
-     * return service.update(score);
-     * }
-     */
+    @PutMapping("/update")
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public Score update(@RequestBody Score score) {
+        return service.update(score);
+    }
 
     @DeleteMapping("/delete")
     @ResponseStatus(code = HttpStatus.OK)

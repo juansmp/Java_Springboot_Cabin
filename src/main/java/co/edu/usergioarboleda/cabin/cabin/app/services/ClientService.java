@@ -34,28 +34,33 @@ public class ClientService {
             }
         }
     }
-    /*
-     * public Client update(Client client) {
-     * if (client.getIdClient() != null) {
-     * Optional<Client> optionalClient = repository.findById(client.getIdClient());
-     * if (optionalClient.isPresent()) {
-     * if (client.getName() != null) {
-     * optionalClient.get().setName(client.getName());
-     * }
-     * if (client.getDescription() != null) {
-     * optionalClient.get().setDescription(client.getDescription());
-     * }
-     * return repository.save(optionalClient.get());
-     * } else {
-     * // throw new RuntimeException("Client not found");
-     * return client;
-     * }
-     * } else {
-     * // throw new RuntimeException("Client not found");
-     * return client;
-     * }
-     * }
-     */
+
+    public Client update(Client client) {
+        if (client.getIdClient() != null) {
+            Optional<Client> optionalClient = repository.findById(client.getIdClient());
+            if (optionalClient.isPresent()) {
+                if (client.getName() != null) {
+                    optionalClient.get().setName(client.getName());
+                }
+                if (client.getEmail() != null) {
+                    optionalClient.get().setEmail(client.getEmail());
+                }
+                if (client.getPassword() != null) {
+                    optionalClient.get().setPassword(client.getPassword());
+                }
+                if (client.getAge() != null) {
+                    optionalClient.get().setAge(client.getAge());
+                }
+                return repository.save(optionalClient.get());
+            } else {
+                // throw new RuntimeException("Client not found");
+                return client;
+            }
+        } else {
+            // throw new RuntimeException("Client not found");
+            return client;
+        }
+    }
 
     public void delete(Client client) {
         if (client.getIdClient() != null) {
@@ -70,25 +75,5 @@ public class ClientService {
         }
 
     }
-
-    /*
-     * 
-     * public void delete(Integer id) {
-     * repository.deleteById(id);
-     * }
-     * 
-     * public List<Client> getByName(String name) {
-     * return repository.findByName(name);
-     * }
-     * 
-     * public List<Client> getByClient(String client) {
-     * return repository.findByClient(client);
-     * }
-     * 
-     * public List<Client> getByPrice(Double price) {
-     * return repository.findByPrice(price);
-     * }
-     * 
-     */
 
 }

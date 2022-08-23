@@ -35,29 +35,27 @@ public class MessageService {
         }
     }
 
-    /*
-     * public Message update(Message message) {
-     * if (message.getIdMessage() != null) {
-     * Optional<Message> optionalMessage =
-     * repository.findById(message.getIdMessage());
-     * if (optionalMessage.isPresent()) {
-     * if (message.getName() != null) {
-     * optionalMessage.get().setName(message.getName());
-     * }
-     * if (message.getDescription() != null) {
-     * optionalMessage.get().setDescription(message.getDescription());
-     * }
-     * return repository.save(optionalMessage.get());
-     * } else {
-     * // throw new RuntimeException("Message not found");
-     * return message;
-     * }
-     * } else {
-     * // throw new RuntimeException("Message not found");
-     * return message;
-     * }
-     * }
-     */
+    public Message update(Message message) {
+        if (message.getIdMessage() != null) {
+            Optional<Message> optionalMessage = repository.findById(message.getIdMessage());
+            if (optionalMessage.isPresent()) {
+                if (message.getMessageText() != null) {
+                    optionalMessage.get().setMessageText(message.getMessageText());
+                }
+                if (message.getCabin() != null) {
+                    optionalMessage.get().setCabin(message.getCabin());
+                }
+                return repository.save(optionalMessage.get());
+            } else {
+                // throw new RuntimeException("Message not found");
+                return message;
+            }
+        } else {
+            // throw new RuntimeException("Message not found");
+            return message;
+        }
+    }
+
     public void delete(Message message) {
         if (message.getIdMessage() != null) {
             Optional<Message> optionalMessage = repository.findById(message.getIdMessage());
@@ -71,25 +69,5 @@ public class MessageService {
         }
 
     }
-
-    /*
-     * 
-     * public void delete(Integer id) {
-     * repository.deleteById(id);
-     * }
-     * 
-     * public List<Message> getByName(String name) {
-     * return repository.findByName(name);
-     * }
-     * 
-     * public List<Message> getByMessage(String message) {
-     * return repository.findByMessage(message);
-     * }
-     * 
-     * public List<Message> getByPrice(Double price) {
-     * return repository.findByPrice(price);
-     * }
-     * 
-     */
 
 }

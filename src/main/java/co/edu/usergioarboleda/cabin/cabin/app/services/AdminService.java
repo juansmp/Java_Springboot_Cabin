@@ -35,28 +35,30 @@ public class AdminService {
         }
     }
 
-    /*
-     * public Admin update(Admin admin) {
-     * if (admin.getIdAdmin() != null) {
-     * Optional<Admin> optionalAdmin = repository.findById(admin.getIdAdmin());
-     * if (optionalAdmin.isPresent()) {
-     * if (admin.getName() != null) {
-     * optionalAdmin.get().setName(admin.getName());
-     * }
-     * if (admin.getDescription() != null) {
-     * optionalAdmin.get().setDescription(admin.getDescription());
-     * }
-     * return repository.save(optionalAdmin.get());
-     * } else {
-     * // throw new RuntimeException("Admin not found");
-     * return admin;
-     * }
-     * } else {
-     * // throw new RuntimeException("Admin not found");
-     * return admin;
-     * }
-     * }
-     */
+    public Admin update(Admin admin) {
+        if (admin.getIdAdmin() != null) {
+            Optional<Admin> optionalAdmin = repository.findById(admin.getIdAdmin());
+            if (optionalAdmin.isPresent()) {
+                if (admin.getName() != null) {
+                    optionalAdmin.get().setName(admin.getName());
+                }
+                if (admin.getEmail() != null) {
+                    optionalAdmin.get().setEmail(admin.getEmail());
+                }
+                if (admin.getPassword() != null) {
+                    optionalAdmin.get().setPassword(admin.getPassword());
+                }
+                return repository.save(optionalAdmin.get());
+            } else {
+                // throw new RuntimeException("Admin not found");
+                return admin;
+            }
+        } else {
+            // throw new RuntimeException("Admin not found");
+            return admin;
+        }
+    }
+
     public void delete(Admin admin) {
         if (admin.getIdAdmin() != null) {
             Optional<Admin> optionalAdmin = repository.findById(admin.getIdAdmin());
@@ -70,25 +72,5 @@ public class AdminService {
         }
 
     }
-
-    /*
-     * 
-     * public void delete(Integer id) {
-     * repository.deleteById(id);
-     * }
-     * 
-     * public List<Admin> getByName(String name) {
-     * return repository.findByName(name);
-     * }
-     * 
-     * public List<Admin> getByAdmin(String admin) {
-     * return repository.findByAdmin(admin);
-     * }
-     * 
-     * public List<Admin> getByPrice(Double price) {
-     * return repository.findByPrice(price);
-     * }
-     * 
-     */
 
 }

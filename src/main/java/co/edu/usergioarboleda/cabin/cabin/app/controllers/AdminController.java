@@ -41,14 +41,11 @@ public class AdminController {
         return service.getById(id).orElse(null);
     }
 
-    /*
-     * @PutMapping("/update")
-     * 
-     * @ResponseStatus(code = HttpStatus.CREATED)
-     * public Admin update(@RequestBody Admin admin) {
-     * return service.update(admin);
-     * }
-     */
+    @PutMapping("/update")
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public Admin update(@RequestBody Admin admin) {
+        return service.update(admin);
+    }
 
     @DeleteMapping("/delete")
     @ResponseStatus(code = HttpStatus.OK)

@@ -41,14 +41,11 @@ public class ClientController {
         return service.getById(id).orElse(null);
     }
 
-    /*
-     * @PutMapping("/update")
-     * 
-     * @ResponseStatus(code = HttpStatus.CREATED)
-     * public Client update(@RequestBody Client client) {
-     * return service.update(client);
-     * }
-     */
+    @PutMapping("/update")
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public Client update(@RequestBody Client client) {
+        return service.update(client);
+    }
 
     @DeleteMapping("/delete")
     @ResponseStatus(code = HttpStatus.OK)

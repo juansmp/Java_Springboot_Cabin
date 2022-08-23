@@ -69,24 +69,5 @@ public class CategoryService {
         }
 
     }
-    /*
-     * 
-     * public void delete(Integer id) {
-     * repository.deleteById(id);
-     * }
-     * 
-     * public List<Category> getByName(String name) {
-     * return repository.findByName(name);
-     * }
-     * 
-     * public List<Category> getByCategory(String category) {
-     * return repository.findByCategory(category);
-     * }
-     * 
-     * public List<Category> getByPrice(Double price) {
-     * return repository.findByPrice(price);
-     * }
-     * 
-     */
 
 }

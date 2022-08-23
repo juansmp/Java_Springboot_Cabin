@@ -41,14 +41,11 @@ public class MessageController {
         return service.getById(id).orElse(null);
     }
 
-    /*
-     * @PutMapping("/update")
-     * 
-     * @ResponseStatus(code = HttpStatus.CREATED)
-     * public Message update(@RequestBody Message message) {
-     * return service.update(message);
-     * }
-     */
+    @PutMapping("/update")
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public Message update(@RequestBody Message message) {
+        return service.update(message);
+    }
 
     @DeleteMapping("/delete")
     @ResponseStatus(code = HttpStatus.OK)
