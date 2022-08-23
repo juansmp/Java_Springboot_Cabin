@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,8 +27,13 @@ public class CategoryController {
     private CategoryService service;
 
     @GetMapping("/all")
-    public List<Category> getAll() {
-        return service.getAll();
+    public ResponseEntity<List<Category>> getAll() {
+        List<Category> listCategories = service.getAll();
+        if (listCategories.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(listCategories);
+        } else {
+            return ResponseEntity.status(HttpStatus.OK).body(listCategories);
+        }
     }
 
     @PostMapping("/save")
