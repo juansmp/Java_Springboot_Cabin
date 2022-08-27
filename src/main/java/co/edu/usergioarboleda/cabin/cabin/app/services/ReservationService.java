@@ -5,7 +5,12 @@ import org.springframework.stereotype.Service;
 
 import co.edu.usergioarboleda.cabin.cabin.app.repository.ReservationRepository;
 import co.edu.usergioarboleda.cabin.cabin.app.models.Reservation;
+import co.edu.usergioarboleda.cabin.cabin.app.models.custom.CountClient;
+import co.edu.usergioarboleda.cabin.cabin.app.models.custom.StatusAmount;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -77,6 +82,41 @@ public class ReservationService {
         } else {
             // throw new RuntimeException("Reservation not found");
         }
+    }
+
+    public List<Reservation> getReportDates(String fechaInicial, String fechaFinal) {
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date fechaInicialDate = new Date();
+        Date fechaFinalDate = new Date();
+        try {
+            fechaInicialDate = formatter.parse(fechaInicial);
+            fechaFinalDate = formatter.parse(fechaFinal);
+            if (fechaInicialDate.before(fechaFinalDate)) {
+                return repository.findAllByDates(fechaInicialDate, fechaFinalDate);
+            } else {
+                return new ArrayList<Reservation>();
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return new ArrayList<Reservation>();
+        }
+    }
+
+    /**
+     * Metodo que devuelve el top de clientes que mas reservaron
+     * 
+     * @return List<CountClient> respuesta
+     */
+    public List<CountClient> getTopClients() {
+        return repository.findTopClients();
+    }
+
+    public StatusAmount getReservationStatusReport() {
+        List<Reservation> completed = repository.findReservationsByStatus("completed");
+        List<Reservation> cancelled = repository.findReservationsByStatus("cancelled");
+
+        return new StatusAmount(completed.size(), cancelled.size());
     }
 
 }

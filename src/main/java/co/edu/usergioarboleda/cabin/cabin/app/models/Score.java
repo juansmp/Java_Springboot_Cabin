@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "score")
 public class Score implements Serializable {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 7L;
 
     @Id
     @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)

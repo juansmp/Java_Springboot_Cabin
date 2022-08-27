@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.usergioarboleda.cabin.cabin.app.models.Reservation;
+import co.edu.usergioarboleda.cabin.cabin.app.models.custom.CountClient;
+import co.edu.usergioarboleda.cabin.cabin.app.models.custom.StatusAmount;
 import co.edu.usergioarboleda.cabin.cabin.app.services.ReservationService;
 
 @RestController
@@ -72,6 +74,28 @@ public class ReservationController {
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void deleteById(@PathVariable Integer id) {
         service.deleteById(id);
+    }
+
+    @GetMapping("/report-dates/{fechaInicial}/{fechaFinal}")
+    public List<Reservation> getReportDates(@PathVariable("fechaInicial") String fechaInicial,
+            @PathVariable("fechaFinal") String fechaFinal) {
+        return service.getReportDates(fechaInicial, fechaFinal);
+    }
+
+    @GetMapping("/report-dates/amount/{fechaInicial}/{fechaFinal}")
+    public Integer getReservationDatesAmount(@PathVariable("fechaInicial") String fechaInicial,
+            @PathVariable("fechaInicial") String fechaFinal) {
+        return service.getReportDates(fechaInicial, fechaFinal).size();
+    }
+
+    @GetMapping("/report-status")
+    public StatusAmount getReportStatus() {
+        return service.getReservationStatusReport();
+    }
+
+    @GetMapping("/report-clients")
+    public List<CountClient> getReportClients() {
+        return service.getTopClients();
     }
 
 }
