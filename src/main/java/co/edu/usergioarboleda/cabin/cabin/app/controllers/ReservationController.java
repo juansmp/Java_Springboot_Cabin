@@ -1,5 +1,6 @@
 package co.edu.usergioarboleda.cabin.cabin.app.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,10 +83,15 @@ public class ReservationController {
         return service.getReportDates(fechaInicial, fechaFinal);
     }
 
-    @GetMapping("/report-dates/amount/{fechaInicial}/{fechaFinal}")
-    public Integer getReservationDatesAmount(@PathVariable("fechaInicial") String fechaInicial,
-            @PathVariable("fechaInicial") String fechaFinal) {
-        return service.getReportDates(fechaInicial, fechaFinal).size();
+    @GetMapping("/report-dates-amount/{fechaInicial}/{fechaFinal}")
+    public int getReportDatesAmount(@PathVariable("fechaInicial") String fechaInicial,
+            @PathVariable("fechaFinal") String fechaFinal) {
+        List<Reservation> listaReservas = new ArrayList<>();
+        listaReservas = service.getReportDates(fechaInicial, fechaFinal);
+        // System.out.println(listaReservas);
+        int numReservas = listaReservas.size();
+        System.out.println("Numero de reservas: " + numReservas);
+        return numReservas;
     }
 
     @GetMapping("/report-status")
